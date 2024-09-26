@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://cb2jlxxe7id1s"]
+
+[ext_resource type="Script" path="res://character_body_2d.gd" id="1_0f3ll"]
+[ext_resource type="Texture2D" uid="uid://crt1opsa8bx3y" path="res://icon.svg" id="2_whxcs"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yqqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b2kao"]
+size = Vector2(698, 20)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_23wvl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_0f3ll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(4, 3)
+shape = SubResource("CapsuleShape2D_3yqqd")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(4, -1.75001)
+scale = Vector2(0.282722, 0.323031)
+texture = ExtResource("2_whxcs")
+
+[node name="GlowContainer" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="GlowContainer"]
+position = Vector2(2, 46)
+rotation = 3.14159
+scale = Vector2(-0.326378, 0.42116)
+energy = 2.22
+texture = ExtResource("2_whxcs")
+
+[node name="blocks" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="blocks"]
+position = Vector2(3, 24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D"]
+position = Vector2(5, 14)
+shape = SubResource("RectangleShape2D_b2kao")
+
+[node name="Sprite2D" type="Sprite2D" parent="blocks/StaticBody2D"]
+scale = Vector2(231.411, 1.28027)
+texture = SubResource("CanvasTexture_23wvl")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="blocks"]
+position = Vector2(416, -34)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D2"]
+position = Vector2(5, 14)
+shape = SubResource("RectangleShape2D_b2kao")
+
+[node name="Sprite2D" type="Sprite2D" parent="blocks/StaticBody2D2"]
+scale = Vector2(231.411, 1.28027)
+texture = SubResource("CanvasTexture_23wvl")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="blocks"]
+position = Vector2(-310, -94)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D3"]
+position = Vector2(5, 14)
+shape = SubResource("RectangleShape2D_b2kao")
+
+[node name="Sprite2D" type="Sprite2D" parent="blocks/StaticBody2D3"]
+scale = Vector2(231.411, 1.28027)
+texture = SubResource("CanvasTexture_23wvl")
