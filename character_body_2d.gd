@@ -2,13 +2,16 @@ extends CharacterBody2D
 #wassup gigidty gang, just remember to change the sprite for the point light to whatever u like, 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
+
+# change time it takes for the effect to disspeaear
 const GLOW_FADE_DURATION = 0.3 
 
 @onready var glow_container = $"../GlowContainer"
 @onready var tween: Tween
 @onready var glow_light: PointLight2D = $"../GlowContainer/PointLight2D"
 
-var max_glow_energy = 1.0  
+# how bright u want it?
+var max_glow_energy = 2.0  
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_floor_position: Vector2
 
@@ -33,19 +36,22 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Check if we've just landed on a new floor
+	# check if wve just landed on a new floor
 	if not was_on_floor and is_on_floor():
 		last_floor_position = global_position
+		# make sure it only follows horozontally not virtucally
 		glow_container.global_position = last_floor_position
 
-	# Update horizontal position of the light
+	# update horiontal position of the light
 	glow_container.global_position.x = global_position.x
 
+	# magical if condition 😱
 	if is_on_floor():
 		fade_glow(true)
 	else:
 		fade_glow(false)
 
+# tween is basically allows you to control the rate of a value changing by selecting end value, transition duration and idk just it wortks and its cool.
 func fade_glow(fade_in: bool):
 	if tween and tween.is_valid():
 		tween.kill()  
