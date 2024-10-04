@@ -4,13 +4,15 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 # Change time it takes for the effect to disappear
 const FADE_DURATION = 0.2 
+# Adjust this value to control how quickly the fade effect catches up to the player (0.0 - 1.0)
+const LAG_FACTOR = 0.1
 
 @onready var fade_container = $"../GlowContainer"
 @onready var tween: Tween
 @onready var fade_sprite: Sprite2D = $"../GlowContainer/FadeSprite"
 
 # How opaque you want it at maximum?
-var max_opacity = 0.9  
+var max_opacity = 0.5 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var last_floor_position: Vector2
 
@@ -36,19 +38,20 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 	
-	# Check if we've just landed on a new floor
-	if not was_on_floor and is_on_floor():
-		last_floor_position = global_position
-		fade_container.global_position.y = last_floor_position.y
-		
-	# Magical if condition 😱
+	# Update fade container position with lag
 	if is_on_floor():
-		fade_container.global_position.x = global_position.x
+		var target_x = global_position.x
+		fade_container.global_position.x = lerp(fade_container.global_position.x, target_x, LAG_FACTOR)
+		last_floor_position = fade_container.global_position
 		fade_spritei(true)
 	else:
+		fade_container.global_position = last_floor_position
 		fade_spritei(false)
+	
+	# Check if we've just landed on a new floor
+	if not was_on_floor and is_on_floor():
+		fade_container.global_position.y = global_position.y
 
-# Tween allows you to control the rate of a value changing by selecting end value, transition duration
 func fade_spritei(fade_in: bool):
 	if tween and tween.is_valid():
 		tween.kill()  

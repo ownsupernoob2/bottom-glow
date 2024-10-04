@@ -5,9 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://be06v4fjax4ix" path="res://cloud.png" id="3_8srh4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3yqqd"]
+height = 22.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b2kao"]
-size = Vector2(187, 18)
+size = Vector2(410.5, 18)
 
 [sub_resource type="Environment" id="Environment_8wjqe"]
 background_mode = 3
@@ -16,6 +17,7 @@ glow_enabled = true
 glow_hdr_scale = 0.0
 
 [node name="Node2D" type="Node2D"]
+position = Vector2(-106, 54)
 
 [node name="Player" type="CharacterBody2D" parent="."]
 script = ExtResource("1_0f3ll")
@@ -47,31 +49,31 @@ texture = ExtResource("3_8srh4")
 [node name="blocks" type="Node" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="blocks"]
-position = Vector2(3, 24)
+position = Vector2(14, 39)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D"]
-position = Vector2(12, 24)
+position = Vector2(-111.75, 71)
 shape = SubResource("RectangleShape2D_b2kao")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="blocks"]
 position = Vector2(416, -34)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D2"]
-position = Vector2(-252, 11)
+position = Vector2(-161, 85)
 shape = SubResource("RectangleShape2D_b2kao")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="blocks"]
 position = Vector2(-310, -94)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D3"]
-position = Vector2(203, 23)
+position = Vector2(708, 79)
 shape = SubResource("RectangleShape2D_b2kao")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="blocks"]
 position = Vector2(183, 9)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D4"]
-position = Vector2(605, -87)
+position = Vector2(1128, -90)
 scale = Vector2(5.16, 1)
 shape = SubResource("RectangleShape2D_b2kao")
 
@@ -79,7 +81,7 @@ shape = SubResource("RectangleShape2D_b2kao")
 position = Vector2(-556, -6)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="blocks/StaticBody2D5"]
-position = Vector2(203, 23)
+position = Vector2(175, 56)
 shape = SubResource("RectangleShape2D_b2kao")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
